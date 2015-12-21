@@ -14,15 +14,23 @@ export function getActivity() {
 
   return global.fetch(`https://api.github.com/users/${GITHUB.USER}/events`, params)
     .then((response) => {
+      let status;
+      let body;
+
       if (response.status === 200) {
-        global.localStorage.setItem(GITHUB.LOCALSTORAGE_ETAG_KEY, response.headers.get('ETag'));
-        global.localStorage.setItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY, response);
-        return response;
+        status = 200;
+        body = response.body;
+
+        global.localStorage.setItem(GITHUB.LOCALSTORAGE_ETAG_KEY, response.headers.ETag);
+        global.localStorage.setItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY, response.body);
       } else if (response.status === 304) {
-        return global.localStorage.getItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY);
+        status = 304;
+        body = global.localStorage.getItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY);
       }
-    })
-    .then((response) => {
-      return response.json();
+
+      return {
+        status,
+        body: JSON.parse(body)
+      };
     });
 }
