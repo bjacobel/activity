@@ -2,4 +2,6 @@ indentation:
   - 2
   -
     size: 2
-  property-sort-order: 0
+property-sort-order: 0
+files:
+  include: 'src/stylesheets/**/*.s+(a|c)ss'

@@ -34,7 +34,7 @@
   "env": {
     "mocha": true,
     "worker": true,
-    "jquery": true,
+    "jquery": false,
     "node": true,
     "commonjs": true
   }

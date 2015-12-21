@@ -7,8 +7,7 @@
     "start": "webpack-dev-server --hot --history-api-fallback --output-public-path /",
     "build": "webpack --progress -c --optimize-minimize",
     "test": "mocha ./test/**/*.test.js --require ./test/node-setup",
-    "lint": "eslint .",
-    "coverage": "isparta cover --report text --report html node_modules/mocha/bin/_mocha -- --reporter dot"
+    "lint": "eslint . && sass-lint -v"
   },
   "author": "Brian Jacobel",
   "license": "MIT",
@@ -17,6 +16,7 @@
   "dependencies": {
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
+    "babel-plugin-transform-object-assign": "^6.3.13",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-runtime": "^6.3.13",
