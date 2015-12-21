@@ -1,8 +1,6 @@
-export default (state = null, action) => {
-  switch (action.type) {
-  case 'ANYTHING':
-    return state;
-  default:
-    return state;
-  }
-};
+import { combineReducers } from 'redux';
+import events from './events';
+
+export default combineReducers({
+  events
+});
