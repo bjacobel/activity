@@ -14,23 +14,16 @@ export function getActivity() {
 
   return global.fetch(`https://api.github.com/users/${GITHUB.USER}/events`, params)
     .then((response) => {
-      let status;
       let body;
 
       if (response.status === 200) {
-        status = 200;
         body = response.body;
-
         global.localStorage.setItem(GITHUB.LOCALSTORAGE_ETAG_KEY, response.headers.ETag);
         global.localStorage.setItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY, response.body);
       } else if (response.status === 304) {
-        status = 304;
         body = global.localStorage.getItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY);
       }
 
-      return {
-        status,
-        body: JSON.parse(body)
-      };
+      return JSON.parse(body);
     });
 }

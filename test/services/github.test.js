@@ -90,7 +90,7 @@ describe('Github services', () => {
         });
 
         return getActivity().then((response) => {
-          expect(response.body).to.deep.equal({ idk: 'mybffjill' });
+          expect(response).to.deep.equal({ idk: 'mybffjill' });
         });
       });
 
@@ -106,7 +106,7 @@ describe('Github services', () => {
         });
 
         return getActivity().then((response) => {
-          expect(response.body).to.deep.equal({ this: 'isjson' });
+          expect(response).to.deep.equal({ this: 'isjson' });
         });
       });
 
