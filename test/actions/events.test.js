@@ -1,7 +1,7 @@
 import * as eventActions from '../../src/actions/events';
 import * as github from '../../src/services/github';
 
-describe('user actions', () => {
+describe('Event actions', () => {
   let sandbox;
 
   beforeEach(() => {
@@ -23,10 +23,10 @@ describe('user actions', () => {
   });
 
   it('requestEventsFailed returns that as a type, and logs any err passed', () => {
-    const consoleDotLog = sinon.stub(console, 'warn');
+    const consoleDotWarn = sandbox.stub(console, 'warn');
     const action = eventActions.requestEventsFailed('test error');
     expect(action).to.deep.equal({ type: eventActions.REQUEST_EVENTS_FAILED });
-    expect(consoleDotLog.calledWithExactly('test error')).to.be.true;
+    expect(consoleDotWarn).to.have.been.calledWithExactly('test error');
   });
 
   it('fetchEvents dispatches receivedEvents asynchronously on success', () => {

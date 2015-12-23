@@ -1,3 +1,17 @@
-h1 {
-  color: green;
+$grey: #7f7f7f;
+
+.code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11pt;
+  margin-left: 10px;
+}
+
+.timestamp {
+  color: $grey;
+  font-size: 9pt;
+  margin-bottom: 2px;
+}
+
+.events {
+  margin-bottom: 25px;
 }

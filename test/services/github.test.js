@@ -4,17 +4,13 @@ require('isomorphic-fetch');
 
 describe('Github services', () => {
   let sandbox;
-  let server;
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    server = sinon.fakeServer.create();
-    server.respondImmediately = true;
   });
 
   afterEach(() => {
     sandbox.restore();
-    server.restore();
   });
 
   describe('getActivity', () => {
@@ -68,7 +64,7 @@ describe('Github services', () => {
         expect(fetchStub).to.have.been.calledWith(githubURL, {
           headers: {
             'User-Agent': GITHUB.UA,
-            ETag: 'asdf'
+            'ETag': 'asdf'
           }
         });
       });
@@ -80,8 +76,6 @@ describe('Github services', () => {
           [GITHUB.LOCALSTORAGE_ETAG_KEY]: 'asdf',
           [GITHUB.LOCALSTORAGE_PAYLOAD_KEY]: '{"idk": "mybffjill"}'
         });
-
-        server.respondWith('GET', githubURL, [304, {}, '']);
 
         fetchStub.resolves({
           status: 304,
@@ -102,7 +96,7 @@ describe('Github services', () => {
         fetchStub.resolves({
           status: 200,
           headers: {},
-          body: '{"this": "isjson"}'
+          json: () => {return { this: 'isjson' };}
         });
 
         return getActivity().then((response) => {
@@ -114,11 +108,12 @@ describe('Github services', () => {
         fetchStub.resolves({
           status: 200,
           headers: { ETag: 'foo' },
-          body: '{"most": "wonderfultimeoftheyear"}'
+          body: '{ "this": "isjson" }',
+          json: () => {return { this: 'isjson' };}
         });
 
         return getActivity().then(() => {
-          expect(mockStorage[GITHUB.LOCALSTORAGE_PAYLOAD_KEY]).to.equal('{"most": "wonderfultimeoftheyear"}');
+          expect(mockStorage[GITHUB.LOCALSTORAGE_PAYLOAD_KEY]).to.equal('{ "this": "isjson" }');
           expect(mockStorage[GITHUB.LOCALSTORAGE_ETAG_KEY]).to.equal('foo');
         });
       });
