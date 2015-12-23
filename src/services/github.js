@@ -9,7 +9,7 @@ export function getActivity() {
 
   if (etag !== null) {
     Object.assign(params.headers, {
-      'ETag': etag
+      'If-None-Match': etag
     });
   }
 
