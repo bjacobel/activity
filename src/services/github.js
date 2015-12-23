@@ -15,16 +15,14 @@ export function getActivity() {
 
   return global.fetch(url, params)
     .then((response) => {
-      let body;
-
       if (response.status === 200) {
-        body = response.json();
-        global.localStorage.setItem(GITHUB.LOCALSTORAGE_ETAG_KEY, response.headers.ETag);
-        global.localStorage.setItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY, response.body);
+        global.localStorage.setItem(GITHUB.LOCALSTORAGE_ETAG_KEY, response.headers.get('ETag'));
+        return response.text().then((text) => {
+          global.localStorage.setItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY, text);
+          return JSON.parse(text);
+        });
       } else if (response.status === 304) {
-        body = JSON.parse(global.localStorage.getItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY));
+        return JSON.parse(global.localStorage.getItem(GITHUB.LOCALSTORAGE_PAYLOAD_KEY));
       }
-
-      return body;
     });
 }

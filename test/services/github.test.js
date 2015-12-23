@@ -64,7 +64,7 @@ describe('Github services', () => {
         expect(fetchStub).to.have.been.calledWith(githubURL, {
           headers: {
             'User-Agent': GITHUB.UA,
-            'ETag': 'asdf'
+            'If-None-Match': 'asdf'
           }
         });
       });
@@ -95,8 +95,16 @@ describe('Github services', () => {
 
         fetchStub.resolves({
           status: 200,
-          headers: {},
-          json: () => {return { this: 'isjson' };}
+          headers: {
+            get: () => {
+              return '';
+            }
+          },
+          text: () => {
+            return new Promise((resolve) => {
+              resolve('{"this": "isjson"}');
+            });
+          }
         });
 
         return getActivity().then((response) => {
@@ -107,13 +115,22 @@ describe('Github services', () => {
       it('memoizes the reponse body and etag after a 200 response', () => {
         fetchStub.resolves({
           status: 200,
-          headers: { ETag: 'foo' },
+          headers: {
+            ETag: 'foo',
+            get: () => {
+              return 'foo';
+            }
+          },
           body: '{ "this": "isjson" }',
-          json: () => {return { this: 'isjson' };}
+          text: () => {
+            return new Promise((resolve) => {
+              resolve('{"this": "isjson"}');
+            });
+          }
         });
 
         return getActivity().then(() => {
-          expect(mockStorage[GITHUB.LOCALSTORAGE_PAYLOAD_KEY]).to.equal('{ "this": "isjson" }');
+          expect(mockStorage[GITHUB.LOCALSTORAGE_PAYLOAD_KEY]).to.equal('{"this": "isjson"}');
           expect(mockStorage[GITHUB.LOCALSTORAGE_ETAG_KEY]).to.equal('foo');
         });
       });
