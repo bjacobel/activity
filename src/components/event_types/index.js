@@ -1,5 +1,4 @@
 import CreateEvent from './CreateEvent';
-import DefaultEvent from './DefaultEvent';
 import ForkEvent from './ForkEvent';
 import IssueCommentEvent from './IssueCommentEvent';
 import IssuesEvent from './IssuesEvent';
@@ -11,7 +10,6 @@ import WatchEvent from './WatchEvent';
 
 export {
   CreateEvent,
-  DefaultEvent,
   ForkEvent,
   IssueCommentEvent,
   IssuesEvent,

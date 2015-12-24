@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import Timestamp from './Timestamp';
 import {
   CreateEvent,
-  DefaultEvent,
   ForkEvent,
   IssueCommentEvent,
   IssuesEvent,
@@ -48,8 +47,8 @@ export default class EventWrapper extends Component {
       eventSubtype = <WatchEvent event={ event } />;
       break;
     default:
-      eventSubtype = <DefaultEvent event={ event } />;
-      break;
+      // Don't know how to handle this event type
+      return <li/>;
     }
 
     return (
