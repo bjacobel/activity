@@ -1,20 +1,18 @@
-# react-redux-seed
-Seed project for React SPA
+# activity
+GitHub activity dashboard. Shows your most recent public contributions and actions.
 
-Need io.js 2.5
-
-# Installing
+### Installing
 
 `npm install`
 
-# Running locally (development)
+### Running locally (development)
 
 `npm start`
 
-# Testing
+### Testing
 
 `npm test`
 
-# Release
+### Release
 
 `NODE_ENV=PRODUCTION npm run build`
