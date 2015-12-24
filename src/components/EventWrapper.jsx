@@ -1,7 +1,16 @@
 import React, { Component, PropTypes } from 'react';
+import Timestamp from './Timestamp';
 import {
+  CreateEvent,
   DefaultEvent,
-  PushEvent
+  ForkEvent,
+  IssueCommentEvent,
+  IssuesEvent,
+  PublicEvent,
+  PullRequestEvent,
+  PullRequestReviewCommentEvent,
+  PushEvent,
+  WatchEvent
 } from '../../src/components/event_types';
 
 export default class EventWrapper extends Component {
@@ -12,31 +21,31 @@ export default class EventWrapper extends Component {
 
     switch (event.type) {
     case 'CreateEvent':
-      eventSubtype = <DefaultEvent event={ event } />;
+      eventSubtype = <CreateEvent event={ event } />;
       break;
     case 'ForkEvent':
-      eventSubtype = <DefaultEvent event={ event } />;
+      eventSubtype = <ForkEvent event={ event } />;
       break;
     case 'IssueCommentEvent':
-      eventSubtype = <DefaultEvent event={ event } />;
+      eventSubtype = <IssueCommentEvent event={ event } />;
       break;
     case 'IssuesEvent':
-      eventSubtype = <DefaultEvent event={ event } />;
+      eventSubtype = <IssuesEvent event={ event } />;
       break;
     case 'PublicEvent':
-      eventSubtype = <DefaultEvent event={ event } />;
+      eventSubtype = <PublicEvent event={ event } />;
       break;
     case 'PullRequestEvent':
-      eventSubtype = <DefaultEvent event={ event } />;
+      eventSubtype = <PullRequestEvent event={ event } />;
       break;
     case 'PullRequestReviewCommentEvent':
-      eventSubtype = <DefaultEvent event={ event } />;
+      eventSubtype = <PullRequestReviewCommentEvent event={ event } />;
       break;
     case 'PushEvent':
       eventSubtype = <PushEvent event={ event } />;
       break;
     case 'WatchEvent':
-      eventSubtype = <DefaultEvent event={ event } />;
+      eventSubtype = <WatchEvent event={ event } />;
       break;
     default:
       eventSubtype = <DefaultEvent event={ event } />;
@@ -44,7 +53,8 @@ export default class EventWrapper extends Component {
     }
 
     return (
-      <li>
+      <li className="event">
+        <Timestamp time={ event.created_at } />
         { eventSubtype }
       </li>
     );

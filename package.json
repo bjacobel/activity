@@ -32,6 +32,7 @@
     "jsdom": "^6.5.1",
     "jsonp-promise": "^0.1.2",
     "mocha": "^2.3.4",
+    "moment": "^2.10.6",
     "node-sass": "^3.4.2",
     "react": "^0.14.3",
     "react-addons-test-utils": "^0.14.3",

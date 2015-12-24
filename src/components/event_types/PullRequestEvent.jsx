@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class DefaultEvent extends Component {
+export default class PullRequestEvent extends Component {
   render() {
     const { event } = this.props;
 
     return (
-      <p>DefaultEvent - { event.type }</p>
+      <p>PullRequestEvent</p>
     );
   }
 }
 
-DefaultEvent.propTypes = {
+PullRequestEvent.propTypes = {
   event: PropTypes.object.isRequired
 };

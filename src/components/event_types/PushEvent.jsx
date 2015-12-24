@@ -5,7 +5,7 @@ export default class PushEvent extends Component {
     const { event } = this.props;
 
     return (
-      <p>push event</p>
+      <p>PushEvent</p>
     );
   }
 }
