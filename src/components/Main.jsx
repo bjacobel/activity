@@ -17,27 +17,21 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    props.dispatchFetchEvents();
+  componentDidMount() {
+    const { dispatchFetchEvents } = this.props;
+    dispatchFetchEvents();
   }
 
   render() {
-    const { store } = this.context;
-    const { events } = store.getState();
+    const { events } = this.props;
 
-    return (
-      <EventList events={ events }/>
-    );
+    return <EventList events={ events }/>;
   }
 }
 
 Main.propTypes = {
-  dispatchFetchEvents: PropTypes.func.isRequired
-};
-
-Main.contextTypes = {
-  store: PropTypes.object
+  dispatchFetchEvents: PropTypes.func.isRequired,
+  events: PropTypes.array.isRequired
 };
 
 export default connect(

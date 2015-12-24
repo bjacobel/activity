@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --history-api-fallback --output-public-path /",
     "build": "webpack --progress -c --optimize-minimize",
-    "test": "mocha ./test/**/*.test.js --require ./test/node-setup --slow 10ms",
+    "test": "mocha ./test/**/*.test.js --require ./test/node-setup",
     "lint": "eslint . && sass-lint -v"
   },
   "author": "Brian Jacobel",
