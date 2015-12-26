@@ -25,7 +25,11 @@ class Main extends Component {
   render() {
     const { events } = this.props;
 
-    return <EventList events={ events }/>;
+    return (
+      <div className="activity">
+        <EventList events={ events }/>
+      </div>
+    );
   }
 }
 

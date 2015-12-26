@@ -25,7 +25,7 @@ export default class CreateEvent extends Component {
             <span>Created new repository </span>
             <span><a href={ refURL }>{ event.payload.ref }</a> </span>
           </p>
-          <p className="code">{ event.payload.description }</p>
+          <p className="indented code">{ event.payload.description }</p>
         </div>
       );
     }

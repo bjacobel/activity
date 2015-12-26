@@ -17,7 +17,7 @@ export default class PushEvent extends Component {
         </p>
         { event.payload.commits.map((commit) => {
           return (
-            <p className="code" key={ commit.sha }>
+            <p className="indented code" key={ commit.sha }>
               <span><a href={ `${ githubBase }/commit/${ commit.sha }` }>{ commit.sha.slice(0, 7) }</a>:</span>
               <span> { commit.message }</span>
             </p>

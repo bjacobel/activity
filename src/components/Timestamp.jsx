@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
 
 export default class Timestamp extends Component {
+  // @TODO: Make this more redux-y. Possibly connect() this component.
+  // Also, write tests.
   componentWillMount() {
     const { time } = this.props;
     this.setState({ label: moment(time).fromNow() });
@@ -14,7 +16,10 @@ export default class Timestamp extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return moment(nextProps.time).fromNow() !== this.state.label;
+    if (this.state && this.state.hasOwnProperty('label')) {
+      return moment(nextProps.time).fromNow() !== this.state.label;
+    }
+    return false;
   }
 
   componentWillUpdate() {

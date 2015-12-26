@@ -1,26 +1,31 @@
 $grey: #7f7f7f;
 
-.code {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 11pt;
-  margin-left: 10px;
-}
+.activity {
+  p {
+    margin-top: 5px;
+  }
 
-.timestamp {
-  color: $grey;
-  font-size: 9pt;
-  margin-bottom: 2px;
-}
+  li {
+    list-style-type: none;
+    margin-bottom: 20px;
+  }
 
-p {
-  margin-bottom: 20px;
-  margin-top: 5px;
-}
+  ol {
+    padding: 0;
+  }
 
-li {
-  list-style-type: none;
-}
+  .code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11pt;
+  }
 
-ol {
-  padding: 0;
+  .indented {
+    margin-left: 10px;
+  }
+
+  .timestamp {
+    color: $grey;
+    font-size: 9pt;
+    margin-bottom: 2px;
+  }
 }
