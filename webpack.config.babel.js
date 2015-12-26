@@ -27,6 +27,10 @@ module.exports = {
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style', 'css!sass')
+      },
+      {
+        test: /\.(eot|ttf|woff|svg)(\?[a-z0-9=]+)?$/,
+        loader: 'file-loader'
       }
     ]
   },
@@ -36,7 +40,7 @@ module.exports = {
     sourceMap: false
   },
   resolve: {
-    extensions: ['', '.js', 'json', '.jsx', '.scss']
+    extensions: ['', '.js', '.json', '.jsx', '.scss']
   },
   plugins: [
     new webpack.NoErrorsPlugin(),

@@ -1,4 +1,7 @@
+@import 'octicons/octicons.scss';
+
 $grey: #7f7f7f;
+$gutter: 10px;
 
 .activity {
   p {
@@ -27,5 +30,23 @@ $grey: #7f7f7f;
     color: $grey;
     font-size: 9pt;
     margin-bottom: 2px;
+  }
+
+  .gutter {
+    margin: $gutter;
+  }
+
+  .gutter-horiz {
+    margin: 0 $gutter 0 $gutter;
+  }
+
+  .gutter-vert {
+    margin: $gutter 0 $gutter 0;
+  }
+
+  @each $dir in (top bottom left right) {
+    .gutter-#{$dir} {
+      margin-#{$dir}: $gutter;
+    }
   }
 }
